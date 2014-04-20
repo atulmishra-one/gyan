@@ -1,0 +1,43 @@
+<h1 class="page-header">Users</h1>
+
+  <div class="row">
+      <?php foreach ($this->messages as $message) : ?>
+		<li class="label label-danger"><?php echo $this->escape($message); ?></li>
+<?php endforeach; ?>
+                
+      <a href="<?php echo $this->baseUrl();?>/users/add" class="btn btn-primary pull-right">Add Users</a>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+    <?php foreach ( $this->users as $i => $users ): ?>
+                <tr>
+                  <td><?php echo $i+1; ?></td>
+                  <td><?php echo $users['uname']; ?></td>
+                  <td><?php echo $users['email']; ?></td>
+                  <td>
+                      <?php if( $users['status'] == 'Active') : ?>
+                      <span  class="label label-success"><?php echo $users['status']; ?></span>
+                      <?php else : ?>
+                      <span  class="label label-danger"><?php echo $users['status']; ?></span>
+                      <?php endif;?>
+                  </td>
+                  <td><?php echo $users['u_type']; ?></td>
+                  <td><a href="<?php echo $this->baseUrl(); ?>/users/index/delete/?id=<?php echo $users['uid']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                  <a href="<?php echo $this->baseUrl(); ?>/users/edit/?id=<?php echo $users['uid']; ?>" class="btn btn-sm btn-info">Edit</a>
+                  </td>
+                </tr>
+    <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
