@@ -49,7 +49,8 @@ class Application_Model_ProductsMapper
             return $this->getDbtable()->fetchRow($sql);
         }
         else {
-            return $this->getDbtable()->fetchAll();
+            $sql = $this->getDbtable()->select()->order('id desc');
+            return $this->getDbtable()->fetchAll($sql);
         }
     }
     
