@@ -1,4 +1,44 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Index</b> and script/action name <b>index</b></p>
-</div>
+<h1 class="page-header">Products</h1>
+
+  <div class="row">
+      <?php foreach ($this->messages as $message) : ?>
+		<li class="label label-danger"><?php echo $this->escape($message); ?></li>
+<?php endforeach; ?>
+                
+      <a href="<?php echo $this->baseUrl();?>/products/add" class="btn btn-primary pull-right">Add Products</a>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+    <?php foreach ( $this->products as $i => $products ): ?>
+                <tr>
+                  <td><?php echo $i+1; ?></td>
+                  <td><?php echo $products['name']; ?></td>
+                  <td><?php echo $products['price']; ?></td>
+                  <td><?php echo $products['qty']; ?></td>
+                  <td>
+                      <?php if( $products['status'] == 'Active') : ?>
+                      <span  class="label label-success"><?php echo $products['status']; ?></span>
+                      <?php else : ?>
+                      <span  class="label label-danger"><?php echo $products['status']; ?></span>
+                      <?php endif;?>
+                  </td>
+                  
+                  <td><a href="<?php echo $this->baseUrl(); ?>/products/index/delete/?id=<?php echo $products['id']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                  <a href="<?php echo $this->baseUrl(); ?>/products/edit/?id=<?php echo $products['id']; ?>" class="btn btn-sm btn-info">Edit</a>
+                  </td>
+                </tr>
+    <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
