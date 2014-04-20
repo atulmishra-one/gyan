@@ -60,7 +60,7 @@ class Application_Model_Products
     }
     
     public function setName( $name ) {
-        $this->_id = (string)$name;
+        $this->_name = (string)$name;
         return $this;
     }
     

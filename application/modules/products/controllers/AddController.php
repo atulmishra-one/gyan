@@ -20,6 +20,7 @@ class Products_AddController extends Zend_Controller_Action
                 //print_r($request->getPost());
                 $products = new Application_Model_Products( $request->getPost() );
                 $productsM = new Application_Model_ProductsMapper();
+                
                 $productsM->save($products);
                 $this->_helper->flashMessenger->addMessage('<div class="alert alert-success">Success !</div>');
             }

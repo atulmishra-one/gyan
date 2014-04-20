@@ -33,6 +33,7 @@ class Application_Model_ProductsMapper
             'date_added'    => new Zend_Db_Expr('NOW()')
         );
         
+       
         if( null == ($id = $products->getId())) {
             unset( $data['id']);
             $this->getDbTable()->insert($data);
