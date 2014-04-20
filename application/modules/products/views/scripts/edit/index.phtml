@@ -1,4 +1,37 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Edit</b> and script/action name <b>index</b></p>
+<h1 class="page-header">Edit Product</h1>
+
+<div class="row">
+<?php foreach ( $this->messages as $msg ) : ?>
+     <?php echo $msg; ?>
+<?php endforeach;?>
+    
+    <form role="form" method="post">
+        <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?php echo $this->products['name'];?>">
+  </div>
+   
+  <div class="form-group ">
+    <label for="price">Price</label>
+    <div class="input-group">
+    <span class="input-group-addon">Rs - /</span>
+    <input type="text" class="form-control" id="price" name="price" placeholder="Enter price" value="<?php echo $this->products['price'];?>">
+    <span class="input-group-addon">Per / Caret</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="qty">Quantity</label>
+    <div class="input-group">
+    <input type="text" class="form-control" id="qty" name="qty" placeholder="Quantity" value="<?php echo $this->products['qty'];?>">
+    <span class="input-group-addon">Caret</span>
+    </div>
+  </div>
+  <div class="checkbox">
+    <label>
+        <input type="checkbox" name="status" value="Active" <?php echo $this->products['status'] == 'Active'? 'Checked':''; ?>> Active
+    </label>
+  </div>
+  <input type="hidden" name="id" value="<?php echo $this->products['id'];?>" />
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </div>
