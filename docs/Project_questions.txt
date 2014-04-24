@@ -1,0 +1,10 @@
+SUPPLY ?
+
+If distributor demands 6 caret of milk 
+But only 5 caret were distributed ..
+
+Then how will this be managed ?
+
+Who will do entry that how much caret of milk were supplied ?
+
+Will there be a separate section of supply ?
