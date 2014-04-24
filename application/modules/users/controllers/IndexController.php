@@ -29,8 +29,8 @@ class Users_IndexController extends Zend_Controller_Action
             $usersM = new Application_Model_UsersMapper();
             try{
                 $uid = Zend_Auth::getInstance()->getStorage()->read()->id;
-                $npass = $request->getPost()['npass'];
-                $opass = $request->getPost()['opass'];
+                $npass = $request->getPost('npass');
+                $opass = $request->getPost('opass');
                 $usersM->savePassword($npass, $opass, $uid);
                 $this->_helper->flashMessenger->addMessage('<div class="alert alert-success">Success !</div>');
             }
