@@ -60,8 +60,13 @@ class Application_Model_ProductsMapper
     }
     
     public function getProducts() {
-        $sql = $this->getDbtable()->select()->where('status=?', 'Active');
-        return $this->getDbtable()->fetchAll($sql);
+        
+        $sql = "SELECT * FROM products as p WHERE status='Active' AND id NOT IN 
+        ( ( SELECT d.product_id FROM demands as d WHERE p.id=d.product_id GROUP BY p.id HAVING SUM(d.caret) <= qty ) ) ";
+        
+        //$sql = $this->getDbtable()->select()->where('status=?', 'Active');
+        //return $this->getDbtable()->fetchAll($sql);
+        return Zend_Db_Table::getDefaultAdapter()->query($sql)->fetchAll();
     }
     
     public function getQty($id) {
