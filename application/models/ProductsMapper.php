@@ -69,6 +69,12 @@ class Application_Model_ProductsMapper
         return Zend_Db_Table::getDefaultAdapter()->query($sql)->fetchAll();
     }
     
+    public function getProductsAll() {
+        
+        $sql = $this->getDbtable()->select()->where('status=?', 'Active');
+        return $this->getDbtable()->fetchAll($sql);
+    }
+    
     public function getQty($id) {
         $sql = $this->getDbtable()->select()->where('id=?', $id);
         $row = $this->getDbtable()->fetchRow($sql);

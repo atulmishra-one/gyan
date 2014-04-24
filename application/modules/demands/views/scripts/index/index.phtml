@@ -20,6 +20,7 @@
                   <th>Added by</th>
                   <th>Forwarded to plant</th>
                   <th>Approved</th>
+                  <th>Supplied</th>
                   <th>Print</th>
                   <th>Action</th>
                 </tr>
@@ -47,9 +48,16 @@
                        &nbsp;<a href="<?php echo $this->baseUrl(); ?>/demands/index/approve/?id=<?php echo $demands['did']; ?>" > <span class="glyphicon glyphicon-remove-sign" title="Click to approve"></span> </a>
                       <?php endif;?>
                   </td>
+                  <td><?php echo $demands['supplied']; ?></td>
                   <td><a> <span class="glyphicon glyphicon-print"></span> </a></td>
-                  <td><a href="<?php echo $this->baseUrl(); ?>/demands/index/delete/?id=<?php echo $demands['did']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                  <td>
+                  <i class="glyphicon glyphicon-envelope" title="Send SMS" data-toggle="modal" data-target=".bs-example-modal-sm"></i>
+                  &nbsp;
+                  <a href="<?php echo $this->baseUrl(); ?>/demands/index/delete/?id=<?php echo $demands['did']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                  <?php if( $demands['supplied'] == 'No') : ?>
                   <a href="<?php echo $this->baseUrl(); ?>/demands/edit/?id=<?php echo $demands['did']; ?>" class="btn btn-sm btn-info">Edit</a>
+                  <?php endif; ?>
+                  
                   </td>
                 </tr>
     <?php endforeach; ?>
@@ -65,3 +73,37 @@
             
           </div>
         </div>
+        
+
+<!-- SMS POPUP -->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Sms</h4>
+      </div>
+      <div class="modal-body">
+         <form>
+          
+     <div class="form-group ">
+    <label for="message">Message</label>
+    
+    <!--<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">-->
+    <textarea name="message" id="message" class="form-control" rows="3" placeholder="Type message..."></textarea>
+    
+  </div>
+         
+         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary ">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

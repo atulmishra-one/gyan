@@ -89,6 +89,16 @@ class Application_Model_DemandsMapper
         return $row['total'];
     }
     
+    public function getCaretDemandIdNot($did, $pid) {
+       /* $sql = $this->getDbtable()->select()->where('product_id=?', $pid);
+        $row = $this->getDbtable()->fetchRow($sql);
+        return $row->caret;
+        */
+        $sql = "SELECT SUM(caret) as total FROM demands WHERE id != $did AND product_id=$pid";
+        $row = Zend_Db_Table::getDefaultAdapter()->query($sql)->fetch();
+        return $row['total'];
+    }
+    
     public function approveDemand( $id ) {
         return $this->getDbtable()->update( array(
             'approved' => 1
