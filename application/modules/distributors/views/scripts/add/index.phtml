@@ -1,0 +1,49 @@
+<h1 class="page-header">Add Distributors</h1>
+
+<div class="row">
+<?php foreach ( $this->messages as $msg ) : ?>
+     <?php echo $msg; ?>
+<?php endforeach;?>
+    
+    <form role="form" method="post">
+    
+      <div class="form-group">
+    <label for="name">Initial name</label>
+    <input type="text" class="form-control" id="initial_name" name="initial_name" placeholder="Mr.">
+  </div>
+    
+        <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+  </div>
+   
+  <div class="form-group ">
+    <label for="price">Email</label>
+    
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+    
+  </div>
+  <div class="form-group">
+    <label for="qty">Contact no</label>
+    <div class="input-group">
+    <span class="input-group-addon">+91</span>
+    <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact no">
+    </div>
+  </div>
+  
+   <div class="form-group ">
+    <label for="address">Address</label>
+    
+    <!--<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">-->
+    <textarea name="address" id="address" class="form-control"></textarea>
+    
+  </div>
+  
+  <div class="checkbox">
+    <label>
+        <input type="checkbox" name="status" value="Active"> Active
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>

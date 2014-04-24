@@ -1,0 +1,50 @@
+<h1 class="page-header">Edit Distributors</h1>
+
+<div class="row">
+<?php foreach ( $this->messages as $msg ) : ?>
+     <?php echo $msg; ?>
+<?php endforeach;?>
+    
+    <form role="form" method="post">
+    
+      <div class="form-group">
+    <label for="name">Initial name</label>
+    <input type="text" class="form-control" id="initial_name" name="initial_name" placeholder="Mr." value="<?php echo $this->distributors['initial_name'];?>">
+  </div>
+    
+        <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<?php echo $this->distributors['name'];?>">
+  </div>
+   
+  <div class="form-group ">
+    <label for="price">Email</label>
+    
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="<?php echo $this->distributors['email'];?>">
+    
+  </div>
+  <div class="form-group">
+    <label for="qty">Contact no</label>
+    <div class="input-group">
+    <span class="input-group-addon">+91</span>
+    <input type="text" class="form-control" id="contact_no" name="contact_no" placeholder="Contact no" value="<?php echo $this->distributors['contact_no'];?>">
+    </div>
+  </div>
+  
+   <div class="form-group ">
+    <label for="address">Address</label>
+    
+    <!--<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">-->
+    <textarea name="address" id="address" class="form-control"><?php echo $this->distributors['address'];?></textarea>
+    
+  </div>
+  
+  <div class="checkbox">
+    <label>
+        <input type="checkbox" name="status" value="Active" <?php echo $this->distributors['status'] == 'Active'? 'Checked':''; ?>> Active
+    </label>
+  </div>
+  <input type="hidden" name="id" value="<?php echo $this->distributors['id'];?>" />
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>

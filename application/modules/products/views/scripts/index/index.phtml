@@ -1,4 +1,4 @@
-<h1 class="page-header">Products</h1>
+<h1 class="page-header text-info">Products</h1>
 
   <div class="row">
       <?php foreach ($this->messages as $message) : ?>
@@ -6,8 +6,10 @@
 <?php endforeach; ?>
                 
       <a href="<?php echo $this->baseUrl();?>/products/add" class="btn btn-primary pull-right">Add Products</a>
+      <br />
+      <br />
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered">
               <thead>
                 <tr>
                   <th>#</th>
@@ -39,6 +41,14 @@
                 </tr>
     <?php endforeach; ?>
               </tbody>
+              <tfoot>
+                <tr>
+                    <td colspan="6" align="middle"><?php echo $this->paginationControl($this->products,
+                                    'Sliding',
+                                    'my_pagination_control.phtml'); ?></td>
+                </tr>
+              </tfoot>
             </table>
+            
           </div>
         </div>

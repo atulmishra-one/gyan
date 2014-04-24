@@ -21,6 +21,29 @@ class Users_IndexController extends Zend_Controller_Action
         $this->_helper->flashMessenger->clearCurrentMessages();
     }
     
+    public function changepasswordAction()
+    {
+        $request = $this->getRequest();
+        
+        if ($request->isPost()) {
+            $usersM = new Application_Model_UsersMapper();
+            try{
+                $uid = Zend_Auth::getInstance()->getStorage()->read()->id;
+                $npass = $request->getPost()['npass'];
+                $opass = $request->getPost()['opass'];
+                $usersM->savePassword($npass, $opass, $uid);
+                $this->_helper->flashMessenger->addMessage('<div class="alert alert-success">Success !</div>');
+            }
+            catch(Exception $e) {
+                $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">'.$e->getMessage().' !</div>');
+            }
+        }
+        
+        $this->view->messages = array_merge(
+                $this->_helper->flashMessenger->getMessages(), $this->_helper->flashMessenger->getCurrentMessages()
+        );
+        $this->_helper->flashMessenger->clearCurrentMessages();
+    }
     public function deleteAction() {
         $this->_helper->viewRenderer->setNoRender(true);
         $id = $this->getParam('id');

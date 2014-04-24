@@ -1,0 +1,67 @@
+<h1 class="page-header text-info">Demands</h1>
+
+  <div class="row">
+      <?php foreach ($this->messages as $message) : ?>
+		<li class="label label-danger"><?php echo $this->escape($message); ?></li>
+<?php endforeach; ?>
+                
+     <a href="<?php echo $this->baseUrl();?>/demands/add" class="btn btn-primary pull-right">Add Demands</a> <br /><br />
+     
+     
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Product name</th>
+                  <th>Caret</th>
+                  <th>Distributor</th>
+                  <th>Added by</th>
+                  <th>Forwarded to plant</th>
+                  <th>Approved</th>
+                  <th>Print</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+    <?php foreach ( $this->demands as $i => $demands ): ?>
+                <tr>
+                  <td><?php echo $i+1; ?></td>
+                  <td><?php echo $demands['title']; ?></td>
+                  <td><?php echo $demands['pname']; ?></td>
+                  <td><?php echo $demands['caret']; ?></td>
+                  <td><?php echo $demands['initial_name']; ?> <?php echo $demands['name']; ?></td>
+                  <td><?php echo $demands['uname']; ?> | <small class="text-warning"> ( <?php echo str_replace( '_', ' ', $demands['u_type'] ); ?> ) </small></td>
+                  <td>
+                      <?php if( $demands['forward'] == 'Yes') : ?>
+                      <span  class="label label-success"><?php echo $demands['forward']; ?></span>
+                      <?php else : ?>
+                      <span  class="label label-danger"><?php echo $demands['forward']; ?></span>
+                      <?php endif;?>
+                  </td>
+                  <td>
+                     <?php if( $demands['approved'] == '1') : ?>
+                      &nbsp;<a><span class="glyphicon glyphicon-ok-sign"></span> </a>
+                      <?php else : ?>
+                       &nbsp;<a href="<?php echo $this->baseUrl(); ?>/demands/index/approve/?id=<?php echo $demands['did']; ?>" > <span class="glyphicon glyphicon-remove-sign" title="Click to approve"></span> </a>
+                      <?php endif;?>
+                  </td>
+                  <td><a> <span class="glyphicon glyphicon-print"></span> </a></td>
+                  <td><a href="<?php echo $this->baseUrl(); ?>/demands/index/delete/?id=<?php echo $demands['did']; ?>" class="btn btn-sm btn-danger">Delete</a>
+                  <a href="<?php echo $this->baseUrl(); ?>/demands/edit/?id=<?php echo $demands['did']; ?>" class="btn btn-sm btn-info">Edit</a>
+                  </td>
+                </tr>
+    <?php endforeach; ?>
+              </tbody>
+              <tfoot>
+                <tr>
+                    <td colspan="12" align="middle"><?php echo $this->paginationControl($this->demands,
+                                    'Sliding',
+                                    'my_pagination_control.phtml'); ?></td>
+                </tr>
+              </tfoot>
+            </table>
+            
+          </div>
+        </div>

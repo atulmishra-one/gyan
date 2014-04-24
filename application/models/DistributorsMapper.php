@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_ProductsMapper
+class Application_Model_DistributorsMapper
 {
     protected $_dbTable;
     
@@ -19,22 +19,23 @@ class Application_Model_ProductsMapper
     
     public function getDbtable() {
         if( null == $this->_dbTable ) {
-            $this->setDbTable('Application_Model_DbTable_Products');
+            $this->setDbTable('Application_Model_DbTable_Distributors');
         }
         return $this->_dbTable;
     }
     
-    public function save(Application_Model_Products $products) {
+    public function save(Application_Model_Distributors $distributors) {
         $data = array(
-            'name'          => $products->getName(),
-            'price'         => $products->getPrice(),
-            'qty'           => $products->getQty(),
-            'status'        => $products->getStatus(),
-            'date_added'    => new Zend_Db_Expr('NOW()')
+            'initial_name'   => $distributors->getInitial_name(),
+            'name'          => $distributors->getName(),
+            'email'         => $distributors->getEmail(),
+            'contact_no'    => $distributors->getContact_no(),
+            'address'       => $distributors->getAddress(),
+            'status'        => $distributors->getStatus()
         );
         
        
-        if( null == ($id = $products->getId())) {
+        if( null == ($id = $distributors->getId())) {
             unset( $data['id']);
             $this->getDbTable()->insert($data);
         }
@@ -51,23 +52,15 @@ class Application_Model_ProductsMapper
         else {
             
             $sql = $this->getDbtable()->select()->order('id desc');
-            /*
-            return $this->getDbtable()->fetchAll($sql);
-            */
+            
             $adapter =  new Zend_Paginator_Adapter_DbSelect($sql);
             return $adapter;
         }
     }
     
-    public function getProducts() {
+    public function getDistributors() {
         $sql = $this->getDbtable()->select()->where('status=?', 'Active');
         return $this->getDbtable()->fetchAll($sql);
-    }
-    
-    public function getQty($id) {
-        $sql = $this->getDbtable()->select()->where('id=?', $id);
-        $row = $this->getDbtable()->fetchRow($sql);
-        return $row->qty;
     }
     
     public function delete( $id ) {

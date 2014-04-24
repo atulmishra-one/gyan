@@ -51,6 +51,26 @@ class Application_Model_UsersMapper
         }
     }
     
+    public function savePassword($npass, $opass, $uid) {
+        
+        $sql = $this->getDbtable()->select()
+        ->where('id=?', $uid)
+        ->where('password=?', md5($opass) );
+        
+        $check = $this->getDbtable()->fetchRow($sql);
+        
+        if( !sizeof($check) ) {
+            throw new Exception('Password doesnot match');
+        }
+        
+        $data = array(
+            'password' => md5($npass)
+        );
+        
+        $this->getDbtable()->update($data, array(
+        'id=?' => $uid
+        ));
+    }
     public function fetchAll($id = false) {
         
         

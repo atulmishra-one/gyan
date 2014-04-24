@@ -1,0 +1,55 @@
+<h1 class="page-header">Add Demands</h1>
+
+<div class="row">
+<?php foreach ( $this->messages as $msg ) : ?>
+     <?php echo $msg; ?>
+<?php endforeach;?>
+    
+    <form role="form" method="post">
+    
+      <div class="form-group">
+    <label for="name">Title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+  </div>
+  
+  <div class="form-group">
+    <label for="product_id">Product</label>
+    <select name="product_id" class="form-control">
+        <option value="">select</option>
+        <?php foreach ( $this->products as $products ) : ?>
+        <option value="<?php echo $products['id']; ?>" <?php echo $this->did == $products['id']? 'Selected':''; ?>><?php echo $products['name']; ?></option>
+        <?php endforeach;?>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="caret">Caret</label>
+    <input type="text" class="form-control" id="caret" name="caret" placeholder="Caret">
+  </div>
+    
+    <div class="form-group">
+    <label for="role">Distributors</label>
+    <select name="distributors_id" class="form-control">
+        <option value="">select</option>
+        <?php foreach ( $this->distributors as $distributors ) : ?>
+        <option value="<?php echo $distributors['id']; ?>" <?php echo $this->did == $distributors['id']? 'Selected':''; ?>><?php echo $distributors['initial_name'], ' ', $distributors['name']; ?></option>
+        <?php endforeach;?>
+    </select>
+  </div>
+    
+   <div class="form-group ">
+    <label for="address">Details</label>
+    
+    <!--<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">-->
+    <textarea name="details" id="details" class="form-control" rows="5"></textarea>
+    
+  </div>
+  
+  <div class="checkbox">
+    <label>
+        <input type="checkbox" name="forward" value="Yes"> Yes
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>

@@ -1,6 +1,6 @@
 <?php
 
-class Products_EditController extends Zend_Controller_Action
+class Distributors_EditController extends Zend_Controller_Action
 {
 
     public function init()
@@ -14,19 +14,20 @@ class Products_EditController extends Zend_Controller_Action
     {
         $id = $this->getParam('id');
         
-        $productsM = new Application_Model_ProductsMapper();
-        $this->view->products = $productsM->fetchAll($id);
+        $distributorsM = new Application_Model_DistributorsMapper();
+        $this->view->distributors = $distributorsM->fetchAll($id);
         
         $request = $this->getRequest();
         
         if ($request->isPost()) {
+            
             if( ( $this->validate( $request->getPost() ) ) === true ) {
                 
-                //print_r($request->getPost());
-                $products = new Application_Model_Products( $request->getPost() );
-                $productsM = new Application_Model_ProductsMapper();
+                $distributors = new Application_Model_Distributors( $request->getPost() );
+                $distributorsM = new Application_Model_DistributorsMapper();
                 
-                $productsM->save($products);
+                $distributorsM->save($distributors);
+                
                 $this->_helper->flashMessenger->addMessage('<div class="alert alert-success">Success !</div>');
             }
         }
@@ -40,13 +41,23 @@ class Products_EditController extends Zend_Controller_Action
     
     protected function validate( $data ) {
         
+        if ( empty( $data['initial_name']) ) {
+            $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">Please provide Initial name !</div>');
+            return;
+        }
+        
         if ( empty( $data['name']) ) {
             $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">Please provide name !</div>');
             return;
         }
         
-        if ( empty( $data['price']) ) {
-            $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">Please provide price !</div>');
+        if ( empty( $data['email']) ) {
+            $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">Please provide email !</div>');
+            return;
+        }
+        
+        if ( empty( $data['contact_no']) ) {
+            $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">Please provide Contact no !</div>');
             return;
         }
         

@@ -2,50 +2,84 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gyan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gyan</title>
-
-    <!-- Bootstrap core CSS -->
+    <!-- Le styles -->
     <link href="<?php echo $this->baseUrl();?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
 
-    <!-- Custom styles for this template -->
-    <link href="<?php echo $this->baseUrl();?>/css/signin.css" rel="stylesheet">
+      .form-signin {
+        max-width: 300px;
+        padding: 10px 20px 20px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    </style>
+    
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <!-- Fav and touch icons -->
+ 
   </head>
 
   <body>
 
     <div class="container">
+
       <form class="form-signin" role="form" method="post">
+      
         <h2 class="form-signin-heading">Please sign in</h2>
-        <ul>
-	<?php foreach ($this->messages as $message) : ?>
-		<li class="label label-danger"><?php echo $this->escape($message); ?></li>
-<?php endforeach; ?>
-</ul>
-        <input type="email" class="form-control" placeholder="Email address" name="username" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" name="password" required>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+        	<?php foreach ($this->messages as $message) : ?>
+		          <p class="label label-danger "><?php echo $this->escape($message); ?></p> <br /><br />
+            <?php endforeach; ?>
+
+        <input type="text" name="username" class="form-control" placeholder="Email address" required autofocus>
+        
+        <input type="password" name="password" class="form-control" placeholder="Password" required >
+        
+        <input type="submit" name="btn" class="btn btn-primary btn-block" value="Sign in" />
+      
+     </form>
 
     </div> <!-- /container -->
 
-
-    <!-- Bootstrap core JavaScript
+    <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+   
+
   </body>
 </html>
