@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2014 at 03:29 PM
+-- Generation Time: Apr 26, 2014 at 11:50 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -37,16 +37,18 @@ CREATE TABLE IF NOT EXISTS `demands` (
   `modified_by` varchar(128) NOT NULL,
   `forward` enum('Yes','No') NOT NULL DEFAULT 'No',
   `approved` int(1) NOT NULL,
+  `supplied` enum('Yes','No') NOT NULL DEFAULT 'No',
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `demands`
 --
 
-INSERT INTO `demands` (`id`, `title`, `details`, `product_id`, `caret`, `distributors_id`, `added_by`, `modified_by`, `forward`, `approved`, `date_added`) VALUES
-(9, 'Milk', 'Milk needed', 5, 6, 4, 6, '', 'Yes', 1, '2014-04-22 23:59:40');
+INSERT INTO `demands` (`id`, `title`, `details`, `product_id`, `caret`, `distributors_id`, `added_by`, `modified_by`, `forward`, `approved`, `supplied`, `date_added`) VALUES
+(1, 'Full cream milk 1ltr for Deoria', '5 carat Full cream milk for deoria route ok', 1, 5, 4, 6, '14', 'Yes', 0, 'No', '2014-04-26 14:02:43'),
+(2, 'Milk Toned', 'Needed toned milk', 2, 5, 4, 8, '', 'Yes', 1, 'No', '2014-04-26 14:39:48');
 
 -- --------------------------------------------------------
 
@@ -81,21 +83,23 @@ INSERT INTO `distributors` (`id`, `initial_name`, `name`, `email`, `contact_no`,
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `price` decimal(18,4) NOT NULL,
+  `mrp` decimal(18,2) NOT NULL,
+  `fact_price` decimal(18,2) NOT NULL,
+  `price` decimal(18,2) NOT NULL,
+  `discount` decimal(18,2) NOT NULL,
   `qty` int(11) NOT NULL,
   `status` enum('Active','Inactive') NOT NULL DEFAULT 'Inactive',
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `qty`, `status`, `date_added`) VALUES
-(5, 'Dahi', 14.0000, 6, 'Active', '2014-04-20 22:52:53'),
-(6, 'Milk', 500.0000, 20, 'Active', '2014-04-24 18:56:31'),
-(7, 'Paneer', 400.0000, 100, 'Active', '2014-04-24 18:56:48');
+INSERT INTO `products` (`id`, `name`, `mrp`, `fact_price`, `price`, `discount`, `qty`, `status`, `date_added`) VALUES
+(1, 'Full cream milk 1tr', 23.00, 21.00, 276.00, 10.00, 10, 'Active', '2014-04-26 13:35:41'),
+(2, 'Toned Milk 1/2 ltr', 18.00, 17.00, 216.00, 6.00, 5, 'Active', '2014-04-26 13:37:25');
 
 -- --------------------------------------------------------
 
@@ -112,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `date_added` datetime NOT NULL,
   `type` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `users`
@@ -123,7 +127,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `name`, `status`, `date_added`, 
 (7, 'headoffice@gyan.com', 'b9531b4f130c39bbff268010e61d5f23', 'Head office', 'Active', '2014-04-20 11:53:09', 2),
 (8, 'areamanager@gyan.com', '1aaff3fcd99f7a3b3bb5bb96982641d2', 'Area Manager', 'Active', '2014-04-20 11:54:02', 3),
 (9, 'account@gyan.com', 'e268443e43d93dab7ebef303bbe9642f', 'Account Department', 'Active', '2014-04-20 11:56:21', 5),
-(13, 'atulmishra.one@gmail.com', 'c48a62bd2a2ac2db21bcd1b77f1a04d8', 'Atul Mishra', 'Active', '2014-04-24 18:43:34', 4);
+(14, 'plant@gyan.com', '9ea0a36b3a20901fafe834eb519a595c', 'Plant', 'Active', '2014-04-26 14:00:26', 4);
 
 -- --------------------------------------------------------
 

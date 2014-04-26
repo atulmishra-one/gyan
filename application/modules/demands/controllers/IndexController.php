@@ -14,12 +14,17 @@ class Demands_IndexController extends Zend_Controller_Action
     {
         $demandsM = new Application_Model_DemandsMapper();
         
-        $adapter = $demandsM->fetchAll();
+        $u_type = Zend_Auth::getInstance ()->getStorage()->read()->type;
+        $u_id = Zend_Auth::getInstance ()->getStorage()->read()->id;
+        
+        $adapter = $demandsM->fetchAll(false, $u_type, $u_id);
         
         $paginator = new Zend_Paginator($adapter);
         $paginator->setCurrentPageNumber( $this->getParam('page') );
         //$paginator->setItemCountPerPage(1);
         $this->view->demands = $paginator;
+        
+        $this->view->u_type = $u_type;
         
         $this->view->messages = array_merge(
                 $this->_helper->flashMessenger->getMessages(), $this->_helper->flashMessenger->getCurrentMessages()

@@ -1,5 +1,6 @@
 <h1 class="page-header text-info">Products</h1>
 
+<div class="breadcrumb"><a href="<?php echo $this->baseUrl();?>/dashboard" class="small">Dashboard</a> / <span class="small text-muted">Products</span></div>
   <div class="row">
       <?php foreach ($this->messages as $message) : ?>
 		<li class="label label-danger"><?php echo $this->escape($message); ?></li>
@@ -14,8 +15,11 @@
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>MRP</th>
+                  <th>Fact price</th>
                   <th>Price</th>
-                  <th>Qty</th>
+                  <th>Discount</th>
+                  <th>Carat</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -25,7 +29,10 @@
                 <tr>
                   <td><?php echo $i+1; ?></td>
                   <td><?php echo $products['name']; ?></td>
+                  <td>Rs <?php echo $products['mrp']; ?> /-</td>
+                  <td>Rs <?php echo $products['fact_price']; ?> /-</td>
                   <td>Rs <?php echo $products['price']; ?> /-</td>
+                  <td>Rs <?php echo $products['discount']; ?> /-</td>
                   <td><?php echo $products['qty']; ?></td>
                   <td>
                       <?php if( $products['status'] == 'Active') : ?>
@@ -43,7 +50,7 @@
               </tbody>
               <tfoot>
                 <tr>
-                    <td colspan="6" align="middle"><?php echo $this->paginationControl($this->products,
+                    <td colspan="12" align="middle"><?php echo $this->paginationControl($this->products,
                                     'Sliding',
                                     'my_pagination_control.phtml'); ?></td>
                 </tr>

@@ -30,7 +30,10 @@ class Application_Model_ProductsMapper
             'price'         => $products->getPrice(),
             'qty'           => $products->getQty(),
             'status'        => $products->getStatus(),
-            'date_added'    => new Zend_Db_Expr('NOW()')
+            'date_added'    => new Zend_Db_Expr('NOW()'),
+            'mrp'           => $products->getMrp(),
+            'fact_price'    => $products->getFact_price(),
+            'discount'      => $products->getDiscount()
         );
         
        

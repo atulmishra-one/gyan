@@ -1,11 +1,11 @@
-<h1 class="page-header">Add Distributors</h1>
-
+<h1 class="page-header text-info">Add Distributors</h1>
+<div class="breadcrumb"><a href="<?php echo $this->baseUrl();?>/dashboard" class="small">Dashboard</a> / <a href="<?php echo $this->baseUrl();?>/distributors" class="small">Distributors</a> / <span class="small text-muted">Add</span></div>
 <div class="row">
 <?php foreach ( $this->messages as $msg ) : ?>
      <?php echo $msg; ?>
 <?php endforeach;?>
     
-    <form role="form" method="post">
+    <form role="form" method="post" class="well">
     
       <div class="form-group">
     <label for="name">Initial name</label>

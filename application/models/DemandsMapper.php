@@ -47,12 +47,13 @@ class Application_Model_DemandsMapper
         }
     }
     
-    public function fetchAll( $id = false ) {
+    public function fetchAll( $id = false , $by = false, $by_id = false ) {
         if( $id ) {
             $sql = $this->getDbtable()->select()->where('id=?', $id);
             return $this->getDbtable()->fetchRow($sql);
         }
         else {
+            
             
             $sql = $this->getDbtable()->select()
             ->setIntegrityCheck(false)
@@ -73,6 +74,14 @@ class Application_Model_DemandsMapper
             ->join('user_type as ut', 'ut.id=u.type')
             ->join('distributors as ds', 'ds.id=d.distributors_id')
             ->order('d.id desc');
+            
+            if( $by && $by == 3) {
+              $sql->where('d.added_by=?', $by_id);   
+            }
+            
+            if( $by && $by == 4 ) {
+                $sql->where('d.forward=?', 'Yes');
+            }
             
             $adapter =  new Zend_Paginator_Adapter_DbSelect($sql);
             return $adapter;

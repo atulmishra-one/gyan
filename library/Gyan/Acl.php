@@ -31,14 +31,24 @@ class Gyan_Acl extends Zend_Controller_Plugin_Abstract
             $acl->addRole( new Zend_Acl_Role($role) );
         }
         
+        $acl->add( new Zend_Acl_Resource('dashboard') );
         $acl->add( new Zend_Acl_Resource('products') );
         $acl->add( new Zend_Acl_Resource('users') );
+        $acl->add( new Zend_Acl_Resource('distributors') );
+        $acl->add( new Zend_Acl_Resource('demands') );
         
         $acl->allow('admin');
-        //$acl->allow('headoffice', array('users'));
+        
+        $acl->allow('headoffice', array('dashboard', 'distributors', 'demands'));
         $acl->deny('headoffice', array('products', 'users'));
         //$acl->deny('headoffice', 'users');
 		
+        $acl->allow('plant', array('dashboard','demands'));
+        $acl->deny('plant', array('distributors', 'users', 'products'));
+        
+        $acl->allow('areamanager', array('demands'));
+        $acl->deny('areamanager', array('dashboard','distributors', 'users', 'products'));
+        
 		return $this->_acl = $acl;
     }
     

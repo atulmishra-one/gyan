@@ -14,6 +14,10 @@ class Default_IndexController extends Zend_Controller_Action {
                 if ($this->_process($formData)) {
                     $auth = Zend_Auth::getInstance();
                     if ($auth->hasIdentity()) {
+                        
+                        if( $auth->getStorage()->read()->type == 3 ) {
+                            $this->_redirect('demands');
+                        }
                         $this->_redirect('dashboard/index');
                     }
                 } else {

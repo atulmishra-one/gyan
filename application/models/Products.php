@@ -8,6 +8,9 @@ class Application_Model_Products
     protected $_qty;
     protected $_status;
     protected $_date_added;
+    protected $_mrp;
+    protected $_fact_price;
+    protected $_discount;
     
     public function __construct( array $options = null) {
         
@@ -102,6 +105,33 @@ class Application_Model_Products
     
     public function getDateAdded() {
         return $this->_date_added;
+    }
+    
+    public function setMrp($mrp) {
+        $this->_mrp = (double)$mrp;
+        return $this;
+    }
+    
+    public function getMrp() {
+        return $this->_mrp;
+    }
+    
+    public function setFact_price($fprice) {
+        $this->_fact_price = (double)$fprice;
+        return $this;
+    }
+    
+    public function getFact_price() {
+        return $this->_fact_price;
+    }
+    
+    public function setDiscount( $dis ) {
+        $this->_discount = (double)$dis;
+        return $this;
+    }
+    
+    public function getDiscount() {
+        return $this->_discount;
     }
 }
 

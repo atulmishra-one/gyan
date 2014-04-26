@@ -1,5 +1,5 @@
 <h1 class="page-header text-info">Distributors</h1>
-
+<div class="breadcrumb"><a href="<?php echo $this->baseUrl();?>/dashboard" class="small">Dashboard</a> / <span class="small text-muted">Distributors</span></div>
   <div class="row">
       <?php foreach ($this->messages as $message) : ?>
 		<li class="label label-danger"><?php echo $this->escape($message); ?></li>
@@ -15,6 +15,7 @@
                   <th>Email</th>
                   <th>Contact no</th>
                   <th>Address</th>
+                  <th>Sms</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -25,8 +26,9 @@
                   <td><?php echo $i+1; ?></td>
                   <td><?php echo $distributors['initial_name']; ?> <?php echo $distributors['name']; ?></td>
                   <td><?php echo $distributors['email']; ?></td>
-                  <td><?php echo $distributors['contact_no']; ?></td>
+                  <td><i class="glyphicon glyphicon-phone"></i> <?php echo $distributors['contact_no']; ?></td>
                   <td><?php echo $distributors['address']; ?></td>
+                  <td><i class="glyphicon glyphicon-envelope" title="Send SMS" data-toggle="modal" data-target=".bs-example-modal-sm"></i></td>
                   <td>
                       <?php if( $distributors['status'] == 'Active') : ?>
                       <span  class="label label-success"><?php echo $distributors['status']; ?></span>
@@ -55,3 +57,34 @@
             
           </div>
         </div>
+        
+        
+<!-- SMS POPUP -->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Sms</h4>
+      </div>
+      <div class="modal-body">
+         <form>
+          
+     <div class="form-group ">
+    <label for="message">Message</label>
+    
+    <!--<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">-->
+    <textarea name="message" id="message" class="form-control" rows="3" placeholder="Type message..."></textarea>
+    
+  </div>
+         
+         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary ">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

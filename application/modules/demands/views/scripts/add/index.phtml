@@ -1,11 +1,11 @@
-<h1 class="page-header">Add Demands</h1>
-
+<h1 class="page-header text-info">Add Demands</h1>
+<div class="breadcrumb"><a href="<?php echo $this->baseUrl();?>/dashboard" class="small">Dashboard</a> / <a href="<?php echo $this->baseUrl();?>/demands" class="small">Demands</a> / <span class="small text-muted">Add</span></div>
 <div class="row">
 <?php foreach ( $this->messages as $msg ) : ?>
      <?php echo $msg; ?>
 <?php endforeach;?>
     
-    <form role="form" method="post">
+    <form role="form" method="post" class="well">
     
       <div class="form-group">
     <label for="name">Title</label>

@@ -1,10 +1,19 @@
 SUPPLY ?
 
-If distributor demands 6 caret of milk 
-But only 5 caret were distributed ..
+Supply ya dispatch kaun karta hai ya kaha se hoti hai  eg :-  plant or headoffice ?
 
-Then how will this be managed ?
+Kitni caret milk ki supply hui yeh kaun manage karega ?
 
-Who will do entry that how much caret of milk were supplied ?
+carat management kya hai ?
 
-Will there be a separate section of supply ?
+total production ( for each product )  kya hai ?
+
+#Distributor ka bill generation format ?
+
+returns goods ke kya kya parameters honge ?
+
+Cash management mein kaise cash manage hoga ?
+
+Auto ganarate commision kya hai ?
+
+Approve return goods kya hai ?

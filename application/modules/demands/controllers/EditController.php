@@ -15,7 +15,7 @@ class Demands_EditController extends Zend_Controller_Action
         $id = $this->getParam('id');
         
         $demandsM = new Application_Model_DemandsMapper();
-        $this->view->demands = $demandsM->fetchAll($id);
+        $info = $this->view->demands = $demandsM->fetchAll($id);
         
         
         $request = $this->getRequest();
@@ -31,7 +31,7 @@ class Demands_EditController extends Zend_Controller_Action
                  'distributors_id'  => $request->getPost('distributors_id'),
                  'product_id'       => $request->getPost('product_id'),
                  'caret'            => $request->getPost('caret'),
-                 'added_by'         => Zend_Auth::getInstance()->getStorage()->read()->id,
+                 'added_by'         => $info['added_by'],
                  'modified_by'      => Zend_Auth::getInstance()->getStorage()->read()->id,
                  'id'               => $request->getPost('id')
                 );
@@ -80,8 +80,6 @@ class Demands_EditController extends Zend_Controller_Action
             return;
         }
         
-        echo (int)$demandsM->getCaret( $data['product_id']), " ";
-        echo ( (int)$productsM->getQty( $data['product_id']) +(int)$demandsM->getCaret( $data['product_id']) );
         
         if( (int)$data['caret'] > ( (int)$productsM->getQty( $data['product_id'])- (int)$demandsM->getCaretDemandIdNot( $data['id'], $data['product_id']) ) ) {
             $this->_helper->flashMessenger->addMessage('<div class="alert alert-danger">This product has limited caret in stock !</div>');
